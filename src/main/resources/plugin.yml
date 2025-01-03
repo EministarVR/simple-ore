@@ -1,0 +1,15 @@
+name: SimpleOre
+version: '${project.version}'
+main: me.eministarvr.simpleore.SimpleOre
+api-version: '1.21'
+
+commands:
+  simpleore:
+    description: Displays the available commands with a beautiful message.
+    usage: /simpleore
+  ore:
+    description: Opens the ore selection GUI.
+    usage: /ore
+  credit:
+    description: Displays plugin credits with a nice message.
+    usage: /credit
