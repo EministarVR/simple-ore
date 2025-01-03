@@ -38,7 +38,6 @@ public class SimpleOre extends JavaPlugin implements Listener {
     public boolean onCommand(org.bukkit.command.CommandSender sender, org.bukkit.command.Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("simpleore")) {
             if (args.length == 0) {
-                // Display beautifully formatted help message
                 sendHelpMessage(sender);
                 return true;
             }
@@ -171,6 +170,17 @@ public class SimpleOre extends JavaPlugin implements Listener {
         // Prevent moving items in the menu
         event.setCancelled(true);
 
+        // Handling ore selection and spawn chance menu interaction
+        if (item.getType() == Material.COAL_ORE) {
+            openSpawnChanceMenu(player, "Coal Ore", coalOreChance);
+        } else if (item.getType() == Material.IRON_ORE) {
+            openSpawnChanceMenu(player, "Iron Ore", ironOreChance);
+        } else if (item.getType() == Material.GOLD_ORE) {
+            openSpawnChanceMenu(player, "Gold Ore", goldOreChance);
+        } else if (item.getType() == Material.DIAMOND_ORE) {
+            openSpawnChanceMenu(player, "Diamond Ore", diamondOreChance);
+        }
+
         // Handling increase or decrease button presses for spawn chances
         if (item.getType() == Material.GREEN_WOOL) {
             // Increase spawn chance by 5%
@@ -197,24 +207,10 @@ public class SimpleOre extends JavaPlugin implements Listener {
             }
             player.sendMessage(PREFIX + " §cSpawn chance decreased!");
         } else if (item.getType() == Material.ARROW) {
-            // Close the inventory when the arrow (back) is clicked
+            // Close the inventory when the arrow is clicked
             player.closeInventory();
             player.sendMessage(PREFIX + " §7Returning to the previous menu...");
-        }
-
-        // Refresh the menu to show updated spawn chance
-        openSpawnChanceMenu(player, event.getView().getTitle().replace("§6Adjust ", "").replace(" Spawn Chance", ""),
-                getCurrentChanceForOre(event.getView().getTitle()));
-    }
-
-    // Get the current spawn chance based on ore type
-    private double getCurrentChanceForOre(String oreName) {
-        switch (oreName) {
-            case "Coal Ore": return coalOreChance;
-            case "Iron Ore": return ironOreChance;
-            case "Gold Ore": return goldOreChance;
-            case "Diamond Ore": return diamondOreChance;
-            default: return 0.0;
+            System.out.println("Arrow clicked, closing inventory...");
         }
     }
 }
