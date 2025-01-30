@@ -47,5 +47,5 @@ Ready to transform your world? Install **SimpleOre** and discover a new level of
 ---
 
 **Plugin Version**: 1.0  
-**Author**: [Your Name]  
+**Author**: EministarVR
 **Spigot Resource Page**: [SimpleOre on SpigotMC](https://www.spigotmc.org/resources/simpleore.121694/)
